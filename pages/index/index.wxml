@@ -1,0 +1,55 @@
+<!--index.wxml-->
+<view class="searchBar">
+  <view class="searchNav">
+    <span class="iconfont searchIcon"></span>
+    <text class="searchDeafaultText">输入关键字</text>
+  </view>
+</view>
+<view class="index_sortBar">
+  <scroll-view scroll-x class="sortScroll">
+    <view bindtap='categorySelectHandler' data-plateid="{{item.id}}" data-id="{{index}}" wx:for="{{sortBar}}">
+      {{item.title}}
+    </view>
+  </scroll-view>
+</view>
+<view class="categoryShow">
+  <view class='category_con {{ showId==0 ? "active" : ""}}'>
+    <swiper class="indexSwiper" indicator-dots autoplay>
+      <swiper-item wx:for="{{swiper}}">
+        <image src="{{item}}"></image>
+      </swiper-item>
+    </swiper>
+    <view class="nav_des">
+      <text class="iconfont tips">累计评价</text>
+      <text class="iconfont tips">小程序专享99包邮</text>
+      <text class="iconfont tips">7天无理由退货</text>
+    </view>
+  </view>
+  <view class='category_con {{ showId==1 ? "active" : ""}}'>
+    <image src="{{plate.category1[0].icon}}"></image>
+    <view class="category_grid">
+      <view class="grid_item" wx:for="{{plate.category1[1].children}}">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.site_cate_name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='category_con {{ showId==2 ? "active" : ""}}'>
+    <image src="{{plate.category2[0].icon}}"></image>
+    <view class="category_grid">
+      <view class="grid_item" wx:for="{{plate.category2[1].children}}">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.site_cate_name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='category_con {{ showId==3 ? "active" : ""}}'>
+    <image src="{{plate.category3[0].icon}}"></image>
+  </view>
+  <view class='category_con {{ showId==4 ? "active" : ""}}'>
+    <image src="{{plate.category4[0].icon}}"></image>
+  </view>
+  <view class='category_con {{ showId==4 ? "active" : ""}}'>
+    <image src="{{plate.category5[0].icon}}"></image>
+  </view>
+</view>
