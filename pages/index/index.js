@@ -9,12 +9,14 @@ Page({
    */
   data: {
     sortBar:[
-      { title: '首页', id: '0'},
+      { title: '首页', id: 492},
       { title: '女装', id: 474},
       { title: '男装', id: 498},
       { title: '童装', id: 476},
-      { title: '婴幼儿', id: 486},
-      { title: '运动', id: 480}
+      { title: '鞋履', id: 486},
+      { title: '箱包', id: 480},
+      { title: '配饰', id: 763 }
+      
     ],
     showId: 0,
     swiper: [
@@ -23,7 +25,11 @@ Page({
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
     plate:{
-      category1:'',
+      category1:{
+        banner: '',
+        grid: '',
+        goodsList: ''
+      },
       category4:{
         banner: 'http://img.banggo.com/sources/cms/banggo2017/APP/dxrmbapptz18-0130_01.jpg',
       }
@@ -89,6 +95,7 @@ Page({
     var plateId = e.target.dataset.plateid;
     this.setData({showId: id});
     this.fetchPlateContent(id,plateId);
+    this.fetchGoodsList(id);
   },
   fetchPlateContent:function(id,plateId){
     var _this = this;
@@ -100,10 +107,26 @@ Page({
       success:function(res){
         // debugger;
         var data = res.data.data[0].children;
-        var plateIndex = "plate.category"+id
-        // debugger;
+        var plateBanner = "plate.category"+id+'.banner';
+        var plateGrid = "plate.category" + id + '.grid';
         _this.setData({
-          [plateIndex]: data
+          [plateBanner]: data[0],
+          [plateGrid]: data[1].children
+        })
+      }
+    })
+  },
+  fetchGoodsList:function(id){
+    var _this = this;
+    var keyWord = this.data.sortBar[id].title;
+    var url = 'http://m.banggo.com/search/get-search-goods/a_a_a_a_a_a_a_a_a_a_a_a.shtml?ts=&discountRate=a&word='+keyWord;
+    wx.request({
+      url: url,
+      success: function(res){
+        var data = res.data.data.list;
+        var goodsList = 'plate.category' + id +'.goodsList' ;
+        _this.setData({
+          [goodsList] : data
         })
       }
     })

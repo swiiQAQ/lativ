@@ -26,30 +26,93 @@
     </view>
   </view>
   <view class='category_con {{ showId==1 ? "active" : ""}}'>
-    <image src="{{plate.category1[0].icon}}"></image>
+    <image src="{{plate.category1.banner.icon}}"></image>
     <view class="category_grid">
-      <view class="grid_item" wx:for="{{plate.category1[1].children}}">
+      <view class="grid_item" wx:for="{{plate.category1.grid}}">
         <image src="{{item.icon}}"></image>
         <text>{{item.site_cate_name}}</text>
+      </view>
+    </view>
+    <view class="goods_list">
+      <view class="goods_list_item_box" wx:for="{{plate.category1.goodsList}}">
+         <image class="goods_image" src="{{item.imgUrl}}"></image> 
+         <view class="goods_des">
+            <span>{{item.productName}}</span>
+            <span>￥{{item.salesPrice}}</span>
+         </view>
       </view>
     </view>
   </view>
   <view class='category_con {{ showId==2 ? "active" : ""}}'>
-    <image src="{{plate.category2[0].icon}}"></image>
+    <image src="{{plate.category2.banner.icon}}"></image>
     <view class="category_grid">
-      <view class="grid_item" wx:for="{{plate.category2[1].children}}">
+      <view class="grid_item" wx:for="{{plate.category2.grid}}">
         <image src="{{item.icon}}"></image>
         <text>{{item.site_cate_name}}</text>
       </view>
     </view>
+    <view class="goods_list">
+      <view class="goods_list_item_box" wx:for="{{plate.category2.goodsList}}">
+         <image class="goods_image" src="{{item.imgUrl}}"></image> 
+         <view class="goods_des">
+            <span>{{item.productName}}</span>
+            <span>￥{{item.salesPrice}}</span>
+         </view>
+      </view>
+    </view>
   </view>
   <view class='category_con {{ showId==3 ? "active" : ""}}'>
-    <image src="{{plate.category3[0].icon}}"></image>
+    <image src="{{plate.category3.banner.icon}}"></image>
+    <view class="category_grid">
+      <view class="grid_item" wx:for="{{plate.category3.grid}}">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.site_cate_name}}</text>
+      </view>
+    </view>
+    <view class="goods_list">
+      <view class="goods_list_item_box" wx:for="{{plate.category3.goodsList}}">
+         <image class="goods_image" src="{{item.imgUrl}}"></image> 
+         <view class="goods_des">
+            <span>{{item.productName}}</span>
+            <span>￥{{item.salesPrice}}</span>
+         </view>
+      </view>
+    </view>
   </view>
   <view class='category_con {{ showId==4 ? "active" : ""}}'>
-    <image src="{{plate.category4[0].icon}}"></image>
+    <image src="{{plate.category4.banner.icon}}"></image>
+    <view class="category_grid">
+      <view class="grid_item" wx:for="{{plate.category4.grid}}">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.site_cate_name}}</text>
+      </view>
+    </view>
+    <view class="goods_list">
+      <view class="goods_list_item_box" wx:for="{{plate.category4.goodsList}}">
+         <image class="goods_image" src="{{item.imgUrl}}"></image> 
+         <view class="goods_des">
+            <span>{{item.productName}}</span>
+            <span>￥{{item.salesPrice}}</span>
+         </view>
+      </view>
+    </view>
   </view>
-  <view class='category_con {{ showId==4 ? "active" : ""}}'>
-    <image src="{{plate.category5[0].icon}}"></image>
+  <view class='category_con {{ showId==5 ? "active" : ""}}'>
+    <image src="{{plate.category5.banner.icon}}"></image>
+    <view class="category_grid">
+      <view class="grid_item" wx:for="{{plate.category5.grid}}">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.site_cate_name}}</text>
+      </view>
+    </view>
+    <view class="goods_list">
+      <view class="goods_list_item_box" wx:for="{{plate.category5.goodsList}}">
+         <image class="goods_image" src="{{item.imgUrl}}"></image> 
+         <view class="goods_des">
+            <span>{{item.productName}}</span>
+            <span>￥{{item.salesPrice}}</span>
+         </view>
+      </view>
+    </view>
   </view>
 </view>
