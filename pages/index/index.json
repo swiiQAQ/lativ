@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "lativ 诚衣"
+  "navigationBarTitleText": "lativ 诚衣",
+  "usingComponents":{
+    "searchBar":"/components/searchBar/searchBar"
+  }
 }

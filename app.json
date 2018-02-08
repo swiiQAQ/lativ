@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/sort/sort",
     "pages/outfit/outfit",
@@ -17,7 +17,7 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath":"Image/home.png",
+        "iconPath": "Image/home.png",
         "selectedIconPath": "Image/home.png"
       },
       {
@@ -46,10 +46,10 @@
       }
     ]
   },
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   }
 }

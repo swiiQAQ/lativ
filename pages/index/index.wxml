@@ -1,10 +1,5 @@
 <!--index.wxml-->
-<view class="searchBar">
-  <view class="searchNav">
-    <span class="iconfont searchIcon"></span>
-    <text class="searchDeafaultText">输入关键字</text>
-  </view>
-</view>
+<searchBar></searchBar>
 <view class="index_sortBar">
   <scroll-view scroll-x class="sortScroll">
     <view bindtap='categorySelectHandler' data-plateid="{{item.id}}" data-id="{{index}}" wx:for="{{sortBar}}">

@@ -1,2 +1,12 @@
 <!--pages/sort/sort.wxml-->
-<text>pages/sort/sort.wxml</text>
+<searchBar></searchBar>
+<scroll-view class="sortScroll" scroll-x>
+  <view wx:for="{{firstLevCates}}" data-plateId="{{item.id}}">
+    {{item.site_cate_name}}
+  </view>
+</scroll-view>
+<view class="sortSecondCate">
+  <view class="left_sideBar">
+
+  </view>
+</view>

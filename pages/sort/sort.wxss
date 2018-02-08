@@ -1,1 +1,19 @@
 /* pages/sort/sort.wxss */
+.sortScroll{
+  height: 70rpx;
+  white-space: nowrap;
+  margin-top: 20rpx;
+}
+.sortScroll view{
+  display: inline-block;
+  padding: 0 45rpx;
+  font-size: 28rpx;
+  line-height: 70rpx;
+}
+.sortSecondCate{
+  display: flex;
+  flex-direction: row;
+}
+.left_sideBar{
+  width: 205rpx;
+}

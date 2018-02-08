@@ -1,0 +1,7 @@
+<!--components/searchBar/searchBar.wxml-->
+<view class="searchBar">
+  <view class="searchNav">
+    <span class="iconfont searchIcon"></span>
+    <text class="searchDeafaultText">输入关键字</text>
+  </view>
+</view>
