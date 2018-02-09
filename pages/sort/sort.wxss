@@ -3,6 +3,7 @@
   height: 70rpx;
   white-space: nowrap;
   margin-top: 20rpx;
+  border-bottom: 1px solid #EEEEEE;
 }
 .sortScroll view{
   display: inline-block;
@@ -16,4 +17,45 @@
 }
 .left_sideBar{
   width: 205rpx;
+  flex-shrink: 0;
+}
+.secondCateItem{
+  padding: 30rpx 20rpx 30rpx 40rpx;
+  font-size: 29rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.secondCateItem:nth-child(1)::after{
+  content:"";
+  width: 70%;
+  left: 40rpx;
+  border-bottom: 1px solid #EEEEEE;
+  position: absolute;
+  bottom: 0;
+}
+Image.sort_banner{
+  width: 490rpx;
+  height: 193rpx;
+  border-radius: 5rpx;
+  margin: 25rpx;
+}
+.thirdCate{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 55rpx;
+  box-sizing: border-box;
+}
+.thCate_grid{
+  display: flex;
+  flex-direction: column;
+}
+.thCate_grid image{
+  width: 108rpx;
+  height: 108rpx;
+}
+.thCate_grid text{
+  margin: 8rpx 0 15rpx 0;
+  font-size: 24rpx;
+  text-align: center;
 }

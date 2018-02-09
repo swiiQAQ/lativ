@@ -1,12 +1,24 @@
 <!--pages/sort/sort.wxml-->
 <searchBar></searchBar>
-<scroll-view class="sortScroll" scroll-x>
-  <view wx:for="{{firstLevCates}}" data-plateId="{{item.id}}">
+<scroll-view class="sortScroll" data-initid="{{firstLevCates[0].id}}" scroll-x>
+  <view bindtap='firSelectHandler' wx:for="{{firstLevCates}}" data-plateId="{{item.id}}" data-id="{{index}}">
     {{item.site_cate_name}}
   </view>
 </scroll-view>
 <view class="sortSecondCate">
   <view class="left_sideBar">
-
+    <view class="secondCateItem">上新&爆款</view>
+    <view bindtap="secSelectHandler" class="secondCateItem" data-id="{{index}}" wx:for="{{secondCate[secondCateIndex]}}">
+      {{item.title}}
+    </view>
+  </view>
+  <view class="right_sideBar">
+    <image class="sort_banner" src="http://img.banggo.com/sources/cms/banggo2017/APP/20180129/a_fldh_8.jpg"></image>
+    <view class="thirdCate">
+      <view class="thCate_grid" wx:for="{{secondCate[secondCateIndex][thirdCateIndex].children}}">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.site_cate_name}}</text>
+      </view>
+    </view>
   </view>
 </view>
