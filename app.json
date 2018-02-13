@@ -5,7 +5,8 @@
     "pages/outfit/outfit",
     "pages/cart/cart",
     "pages/user/user",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/goodsDetail/goodsDetail"
   ],
   "tabBar": {
     "color": "#000",

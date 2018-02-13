@@ -124,11 +124,18 @@ Page({
       url: url,
       success: function(res){
         var data = res.data.data.list;
+        // debugger;
         var goodsList = 'plate.category' + id +'.goodsList' ;
         _this.setData({
           [goodsList] : data
         })
       }
     })
+  },
+  goodsDetailRedirect:function(e){
+    var productId = e.currentTarget.dataset.productid;
+    wx.navigateTo({
+      url: '/pages/goodsDetail/goodsDetail?productId='+productId,
+    });
   }
 })

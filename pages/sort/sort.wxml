@@ -1,7 +1,7 @@
 <!--pages/sort/sort.wxml-->
 <searchBar></searchBar>
 <scroll-view class="sortScroll" data-initid="{{firstLevCates[0].id}}" scroll-x>
-  <view bindtap='firSelectHandler' wx:for="{{firstLevCates}}" data-plateId="{{item.id}}" data-id="{{index}}">
+  <view bindtap='firSelectHandler' class="sortItem{{index}}" wx:for="{{firstLevCates}}" data-plateId="{{item.id}}" data-id="{{index}}">
     {{item.site_cate_name}}
   </view>
 </scroll-view>
@@ -12,7 +12,7 @@
       {{item.title}}
     </view>
   </view>
-  <view class="right_sideBar">
+  <!-- <view class="right_sideBar">
     <image class="sort_banner" src="http://img.banggo.com/sources/cms/banggo2017/APP/20180129/a_fldh_8.jpg"></image>
     <view class="thirdCate">
       <view class="thCate_grid" wx:for="{{secondCate[secondCateIndex][thirdCateIndex].children}}">
@@ -20,5 +20,22 @@
         <text>{{item.site_cate_name}}</text>
       </view>
     </view>
+  </view> -->
+  <view style="width: 540rpx;height:900rpx" class="right_sideBar">
+    <swiper current="{{rowCurrent}}" style="height:100%" bindchange="rowSwiperHandler" duration="200">
+      <swiper-item wx:for="{{firstLevCates}}">
+        <swiper current="{{columnCurrent}}" vertical='true' style="height:100%">
+          <swiper-item wx:for="{{secondCate[index]}}" duration="300">
+            <image class="sort_banner" src="http://img.banggo.com/sources/cms/banggo2017/APP/20180129/a_fldh_8.jpg"></image>
+            <view class="thirdCate">
+              <view class="thCate_grid" wx:for="{{item.children}}">
+                <image src="{{item.icon}}"></image>
+                <text>{{item.site_cate_name}}</text>
+              </view>
+            </view>
+          </swiper-item>
+        </swiper>
+      </swiper-item>
+    </swiper>
   </view>
 </view>

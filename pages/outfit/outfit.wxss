@@ -1,1 +1,9 @@
 /* pages/outfit/outfit.wxss */
+.rowSwiper,.verticalSwiper{
+  width: 100%;
+  height: 350rpx;
+}
+.rowSwiper image,.verticalSwiper image{
+  width: 100%;
+  height: 350rpx;
+}

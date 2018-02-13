@@ -1,17 +1,32 @@
-// pages/outfit/outfit.js
+// pages/goodsDetail/goodsDetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    gallery:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var id = options.productId;
+    wx.request({
+      url: 'http://mact.banggo.com/goods/getProductInfo.shtml?goods_sn='+id,
+      dataType: 'json',
+      success: function(res){
+        // debugger;
+        var dataString = res.data;
+        var data = JSON.parse(dataString.replace("(","").replace(")",""));
+        data = data.data.productInfo;
+        debugger;
+        // var data = JSON.parse(res.data);
+
+        // debugger;
+      }
+    })
   },
 
   /**

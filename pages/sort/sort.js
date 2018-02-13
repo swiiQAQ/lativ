@@ -36,8 +36,7 @@ Page({
             { name: '', image: '' }
           ]
         }
-      ],
-      []
+      ]
     ]
 
   },
@@ -129,13 +128,15 @@ Page({
       secondCateIndex: id
     })
     this.fetchFirstCate(plateId);
+    this.rowSwiperRedirect(id);
   },
   // 选择二级目录
   secSelectHandler:function(e){
     var id = e.target.dataset.id;
     this.setData({
       thirdCateIndex: id
-    })
+    });
+    this.columnSwiperRedirect(id);
     // debugger;
   },
   //选择一级目录后调取二级和三级数据存入data中
@@ -162,4 +163,27 @@ Page({
       }
     });
   },
+  //左右滑动切换触发事件，
+  rowSwiperHandler:function(e){
+    console.log(e);
+    var _this = this;
+    var current = e.detail.current;
+    var query = wx.createSelectorQuery();
+    var selector = ".sortScroll .sortItem" + current;
+    
+    query.select(selector).fields({
+      dataset:true,
+    },function(res){
+      var plateId = res.dataset.plateid;
+      _this.setData({secondCateIndex:current});
+      _this.fetchFirstCate(plateId);
+    }).exec();
+    // debugger;
+  },
+  rowSwiperRedirect:function(id){
+    this.setData({rowCurrent: id});
+  },
+  columnSwiperRedirect:function(id){
+    this.setData({columnCurrent: id});
+  }
 })

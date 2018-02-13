@@ -24,12 +24,12 @@
     <image src="{{plate.category1.banner.icon}}"></image>
     <view class="category_grid">
       <view class="grid_item" wx:for="{{plate.category1.grid}}">
-        <image src="{{item.icon}}"></image>
+        <image src="{{item.icon}}" lazy-load='{{true}}'></image>
         <text>{{item.site_cate_name}}</text>
       </view>
     </view>
     <view class="goods_list">
-      <view class="goods_list_item_box" wx:for="{{plate.category1.goodsList}}">
+      <view class="goods_list_item_box" bindtap='goodsDetailRedirect' wx:for="{{plate.category1.goodsList}}" data-productid="{{item.productCode}}">
          <image class="goods_image" src="{{item.imgUrl}}"></image> 
          <view class="goods_des">
             <span>{{item.productName}}</span>
