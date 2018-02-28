@@ -5,13 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    gallery:[]
+    galleryList:[],
+    galleryIndex: 0,
+    productName: '',
+    productId: '',
+    salesPrice: '',
+    marketPrice: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this = this;
     var id = options.productId;
     wx.request({
       url: 'http://mact.banggo.com/goods/getProductInfo.shtml?goods_sn='+id,
@@ -21,10 +27,15 @@ Page({
         var dataString = res.data;
         var data = JSON.parse(dataString.replace("(","").replace(")",""));
         data = data.data.productInfo;
-        debugger;
+        console.log(data);
         // var data = JSON.parse(res.data);
-
-        // debugger;
+        _this.setData({
+          galleryList: data.galleryList,
+          productName: data.productName,
+          productId: data.productId,
+          salesPrice: data.minSalesPrice,
+          marketPrice: data.marketPrice
+        })
       }
     })
   },
@@ -76,5 +87,9 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  changeGalleryIndex:function(e){
+    var newIndex = e.detail.current;
+    this.setData({galleryIndex: newIndex});
   }
 })

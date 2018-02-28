@@ -1,2 +1,24 @@
 <!--pages/goodsDetail/goodsDetail.wxml-->
-<text>pages/goodsDetail/goodsDetail.wxml</text>
+<view>
+  <view class="gallerySwiperWrap">
+    <swiper class="gallerySwiper" bindchange="changeGalleryIndex">
+      <swiper-item wx:for="{{galleryList}}">
+        <image src="{{item.medium}}"></image>
+      </swiper-item>
+    </swiper>
+    <span class="galleryPagination">
+      <em>{{galleryIndex+1}}</em>
+      /
+      <em>{{galleryList.length}}</em>
+    </span>
+  </view>
+  <view class="productBasicInfo">
+    <text class="productName">{{productName}}</text>
+    <text class="productId">商品编码：{{productId}}</text>
+    <view class="">
+      <span>￥{{salesPrice}}</span>
+      <label>吊牌价:</label>
+      <span>{{marketPrice}}</span>
+    </view>
+  </view>
+</view>
