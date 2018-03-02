@@ -11,6 +11,9 @@ Page({
     productId: '',
     salesPrice: '',
     marketPrice: '',
+    saleCount: '',
+    commentCount: 230,
+    productDetailGallery: []
   },
 
   /**
@@ -34,8 +37,20 @@ Page({
           productName: data.productName,
           productId: data.productId,
           salesPrice: data.minSalesPrice,
-          marketPrice: data.marketPrice
+          marketPrice: data.marketPrice,
+          saleCount: data.saleCount
         })
+      }
+    });
+    wx.request({
+      url: 'http://mact.banggo.com/goods/getDescription.shtml?goods_sn='+id,
+      dataType: 'json',
+      success: function(res){
+        var dataString = res.data;
+        debugger;
+        var data = JSON.parse(dataString.replace("(", "").replace(")", ""));
+        _this.setData({productDetailGallery:data.data.images});
+        debugger;
       }
     })
   },

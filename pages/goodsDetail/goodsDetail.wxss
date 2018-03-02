@@ -1,5 +1,9 @@
 /* pages/goodsDetail/goodsDetail.wxss */
 
+.productScrollArea {
+  background: #f7f7f7;
+}
+
 .gallerySwiperWrap {
   position: relative;
 }
@@ -28,15 +32,118 @@
   line-height: 48rpx;
   text-align: center;
 }
-.productBasicInfo{
+
+.productBasicInfo {
   display: flex;
   flex-direction: column;
   padding: 30rpx;
+  border-bottom: 1px solid #eaeaea;
+  background: #fff;
 }
-.productBasicInfo .productName{
+
+.productBasicInfo .productName {
   font-size: 36rpx;
 }
-.productBasicInfo .productId{
+
+.productBasicInfo em {
   font-size: 28rpx;
+  color: #888;
+}
+
+.productBasicInfo .productId {
+  /* font-size: 28rpx; */
+  margin-top: 15rpx;
+}
+
+.productBasicInfo .priceInfo {
   margin-top: 20rpx;
+}
+
+.productService {
+  height: 100rpx;
+  align-items: center;
+  /* line-height: 100rpx; */
+  font-size: 32rpx;
+  padding: 0 30rpx;
+  border-bottom: 1px solid #eaeaea;
+  background: #fff;
+}
+
+.tips_wrap {
+  margin: 20rpx 0;
+  padding: 0 30rpx;
+  /* align-items:  */
+  height: 140rpx;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+  background: #fff;
+  justify-content: center;
+}
+
+.tips_wrap text {
+  color: #888;
+  font-size: 28rpx;
+  display: flex;
+  /* justify-content: center; */
+}
+
+.tips_wrap text::before {
+  content: '·';
+  margin-right: 12rpx;
+}
+
+.productSalesInfo {
+  font-size: 30rpx;
+  height: 100rpx;
+  background: #fff;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.productSalesInfo em {
+  color: #f8584f;
+  margin-left: 15rpx;
+}
+.productSalesInfo .salesInfoItem{
+  border-right: 1px solid #eaeaea;
+}
+.productSalesInfo .salesInfoItem {
+  flex-grow: 1;
+  justify-content: center;
+  margin: 15px 0;
+  box-sizing: border-box;
+  height: 40rpx;
+}
+.skuInfoSelectBtn{
+  height: 100rpx;
+  font-size: 30rpx;
+  padding: 0 30rpx;
+  align-items: center;
+  background: #fff;
+  margin: 20rpx 0;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+}
+.stickyHeader{
+  height: 100rpx;
+  border-bottom: 1px solid #eaeaea;
+  align-items: center;
+  font-size: 30rpx;
+  background: #fff;
+}
+.stickyHeader view{
+  flex-grow: 1;
+  text-align: center;
+}
+.stickyHeader view:nth-child(1){
+  color: #f8584f;
+}
+.productPicDetail{
+  padding: 0 40rpx;
+}
+.productPicDetail .detailTitleItem{
+  font-size: 32rpx;
+}
+.productPicDetail image{
+  width: 100%;
 }

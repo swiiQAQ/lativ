@@ -30,3 +30,12 @@
   content: "\e902"
 }
 
+
+
+.flex-box{
+  display: flex;
+}
+.vertical-box{
+  flex-direction: column;
+}
+

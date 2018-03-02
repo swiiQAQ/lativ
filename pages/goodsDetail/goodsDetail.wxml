@@ -1,5 +1,5 @@
 <!--pages/goodsDetail/goodsDetail.wxml-->
-<view>
+<view class="productScrollArea">
   <view class="gallerySwiperWrap">
     <swiper class="gallerySwiper" bindchange="changeGalleryIndex">
       <swiper-item wx:for="{{galleryList}}">
@@ -14,11 +14,44 @@
   </view>
   <view class="productBasicInfo">
     <text class="productName">{{productName}}</text>
-    <text class="productId">商品编码：{{productId}}</text>
-    <view class="">
+    <em class="productId">商品编码：{{productId}}</em>
+    <view class="priceInfo">
       <span>￥{{salesPrice}}</span>
-      <label>吊牌价:</label>
-      <span>{{marketPrice}}</span>
+      <em>吊牌价:</em>
+      <em>{{marketPrice}}</em>
+    </view>
+  </view>
+  <view class="flex-box productService">
+    <text>正品保障</text>
+    <text>14天退换货</text>
+  </view>
+  <view class="flex-box vertical-box tips_wrap">
+    <text>此商品不可使用积分</text>
+    <text>14天退换</text>
+  </view>
+  <view class="flex-box productSalesInfo">
+    <view class="salesInfoItem flex-box">
+      销量 <em>{{saleCount}}</em>
+    </view>
+    <view class="salesInfoItem flex-box">
+      评价<em>{{commentCount}}</em>
+    </view>
+  </view>
+  <view class="skuInfoSelectBtn flex-box">
+    请选择尺码 颜色
+  </view>
+  <view class="stickyHeader flex-box">
+    <view class="">
+      图文详情
+    </view>
+    <view class="">
+      商品信息
+    </view>
+  </view>
+  <view class="productPicDetail">
+    <text class="detailTitleItem">图文详情</text>
+    <view class="">
+      <image wx:for="{{productDetailGallery[2]}}" src="{{'http://pic.banggo.com'+item.imageUrl}}"></image>
     </view>
   </view>
 </view>
