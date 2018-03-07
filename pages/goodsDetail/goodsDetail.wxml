@@ -1,57 +1,83 @@
 <!--pages/goodsDetail/goodsDetail.wxml-->
-<view class="productScrollArea">
-  <view class="gallerySwiperWrap">
-    <swiper class="gallerySwiper" bindchange="changeGalleryIndex">
-      <swiper-item wx:for="{{galleryList}}">
-        <image src="{{item.medium}}"></image>
-      </swiper-item>
-    </swiper>
-    <span class="galleryPagination">
-      <em>{{galleryIndex+1}}</em>
-      /
-      <em>{{galleryList.length}}</em>
-    </span>
-  </view>
-  <view class="productBasicInfo">
-    <text class="productName">{{productName}}</text>
-    <em class="productId">商品编码：{{productId}}</em>
-    <view class="priceInfo">
-      <span>￥{{salesPrice}}</span>
-      <em>吊牌价:</em>
-      <em>{{marketPrice}}</em>
+<scroll-view scroll-into-view="{{scrollId}}" scrollTop="{{scrollTop}}" scroll-y style='height: {{windowHeight}}px' bindscroll='scrollHandler' scroll-with-animation>
+  <view class="productScrollArea">
+    <view class="gallerySwiperWrap">
+      <swiper class="gallerySwiper" bindchange="changeGalleryIndex">
+        <swiper-item wx:for="{{galleryList}}">
+          <image src="{{item.medium}}"></image>
+        </swiper-item>
+      </swiper>
+      <span class="galleryPagination">
+        <em>{{galleryIndex+1}}</em>
+        /
+        <em>{{galleryList.length}}</em>
+      </span>
     </view>
-  </view>
-  <view class="flex-box productService">
-    <text>正品保障</text>
-    <text>14天退换货</text>
-  </view>
-  <view class="flex-box vertical-box tips_wrap">
-    <text>此商品不可使用积分</text>
-    <text>14天退换</text>
-  </view>
-  <view class="flex-box productSalesInfo">
-    <view class="salesInfoItem flex-box">
-      销量 <em>{{saleCount}}</em>
+    <view class="productBasicInfo">
+      <text class="productName">{{productName}}</text>
+      <em class="productId">商品编码：{{productId}}</em>
+      <view class="priceInfo">
+        <span>￥{{salesPrice}}</span>
+        <em>吊牌价:</em>
+        <em>{{marketPrice}}</em>
+      </view>
     </view>
-    <view class="salesInfoItem flex-box">
-      评价<em>{{commentCount}}</em>
+    <view class="flex-box productService">
+      <text>正品保障</text>
+      <text>14天退换货</text>
     </view>
-  </view>
-  <view class="skuInfoSelectBtn flex-box">
-    请选择尺码 颜色
-  </view>
-  <view class="stickyHeader flex-box">
-    <view class="">
-      图文详情
+    <view class="flex-box vertical-box tips_wrap">
+      <text>此商品不可使用积分</text>
+      <text>14天退换</text>
     </view>
-    <view class="">
-      商品信息
+    <view class="flex-box productSalesInfo">
+      <view class="salesInfoItem flex-box">
+        销量
+        <em>{{saleCount}}</em>
+      </view>
+      <view class="salesInfoItem flex-box">
+        评价
+        <em>{{commentCount}}</em>
+      </view>
     </view>
-  </view>
-  <view class="productPicDetail">
-    <text class="detailTitleItem">图文详情</text>
-    <view class="">
-      <image wx:for="{{productDetailGallery[2]}}" src="{{'http://pic.banggo.com'+item.imageUrl}}"></image>
+    <view class="skuInfoSelectBtn flex-box">
+      请选择尺码 颜色
     </view>
+    <view class="stickyHeader flex-box {{sticky? 'sticky' : ''}}">
+      <view bindtap='stickyScroll' data-scrollid="tuwen" class="">
+        图文详情
+      </view>
+      <view bindtap='stickyScroll' data-scrollid="productTextInfo" class="">
+        商品信息
+      </view>
+    </view>
+    <view id="tuwen" class="productPicDetail">
+      <text class="detailTitleItem">图文详情</text>
+      <view class="detailPicWrap">
+        <image mode="widthFix" src="http://s.banggo.com/pub7/images/mbshop/detailtitle/mtzs_wap.png"></image>
+        <image mode='widthFix' wx:for="{{productDetailGallery[2]}}" src="{{'http://pic.banggo.com'+item.imageUrl}}"></image>
+        <image mode='widthFix' src="http://s.banggo.com/pub7/images/mbshop/detailtitle/xjzs_wap.png"></image>
+        <image mode="widthFix" wx:for="{{productDetailGallery[4]}}" src="{{'http://pic.banggo.com'+item.imageUrl}}"></image>
+        <image mode="widthFix" src="http://s.banggo.com/pub7/images/mbshop/detailtitle/ysxz_wap.png"></image>
+        <view wx:for="{{productDetailGallery[3]}}">
+          <image mode="widthFix" src="{{'http://pic.banggo.com'+item.imageUrl}}"></image>
+          <text style="font-size:26rpx;">{{item.colorName}}</text>
+        </view>
+        <view id="productTextInfo" class="productTextInfo">
+          <image mode="widthFix" src='http://s.banggo.com/pub7/images/mbshop/detailtitle/spxx_wap.png'></image>
+          <view wx:for="{{goodsAttrs}}">
+            <p class="GoodsAttrs">
+              <b class="">{{item.attrName}}:</b>
+              <span>{{item.attrValue[0]}}</span>
+            </p>
+          </view>
+          <view>
+            <image mode='widthFix' src='http://s.banggo.com/pub7/images/mbshop/detailtitle/ppjs_wap.png'></image>
+            <text>{{brandInfo}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view bindtap='scrollToTop' class="goTopBtn {{goTopShow? '' : 'hidden'}}"></view>
   </view>
-</view>
+</scroll-view>
