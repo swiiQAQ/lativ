@@ -1,5 +1,59 @@
 <!--pages/goodsDetail/goodsDetail.wxml-->
-<scroll-view scroll-into-view="{{scrollId}}" scrollTop="{{scrollTop}}" scroll-y style='height: {{windowHeight}}px' bindscroll='scrollHandler' scroll-with-animation>
+<wxs module="m1">
+  var find = function(arr, item) {
+        if (arr.indexOf(item) !== -1) {
+          return true
+        } else {
+          return false
+        }
+    }
+    module.exports.find = find
+</wxs>
+
+
+<scroll-view scroll-into-view="{{scrollId}}" scrollTop="{{scrollTop}}" scroll-y style='height: {{windowHeight}}px' bindscroll='scrollHandler'>
+  <view class="mask {{mask? '' : 'hidden'}}">
+    <view class="overlay">
+      <view class="overlay_top flex-box">
+        <image class="sku_img" src="{{colorImage ? colorImage : galleryList[0].little}}"></image>
+        <view class="sku_info flex-box vertical-box">
+          <text>{{productName}}</text>
+          <view>
+            <b>￥{{salesPrice}}</b>
+            <em>吊牌价：</em>
+            <em class="abort">{{marketPrice}}</em>
+          </view>
+        </view>
+      </view>
+      <scroll-view scroll-y class="overlay_center flex-box vertical-box">
+        <view class="sizeSelectedBox flex-box">
+          <em>尺码：</em>
+          <span class="" wx:if="{{sizeName}}">
+            已选择:" {{sizeName}} "
+          </span>
+        </view>
+
+        <view class="sizeWrap flex-box">
+          <span id="size_{{item.sizeCode}}" wx:for="{{sizeList}}" class="sizeBox {{sizeId === index? 'selectSize' : '' }} {{(m1.find(noStockArray,item.sizeCode))? 'disabled' : ''}}" bindtap="selectSize" data-id="{{index}}" data-sizename="{{item.sizeName}}" data-sizecode="{{item.sizeCode}}">{{item.sizeName}}</span>
+        </view>
+        <view class="colorSelectedBox flex-box">
+          <em>颜色：</em>
+          <span class="" wx:if="{{colorName}}">
+            已选择:" {{colorName}} "
+          </span>
+        </view>
+        <view class="colorWrap flex-box">
+          <span id="color_{{item.colorCode}}" wx:for="{{colorList}}" class="colorBox {{colorId === index? 'selectColor' : '' }} {{(m1.find(noStockArray,item.colorCode))? 'disabled' : ''}}" bindtap="selectColor" data-id="{{index}}" data-colorname="{{item.colorName}}"
+            data-colorcode="{{item.colorCode}}" data-image="{{item.imageUrl}}">{{item.colorName}}</span>
+        </view>
+      </scroll-view>
+      <view class="overlay_bottom flex-box vertical-box">
+        <button type="warn" size="mini" bindtap='addToCart'>
+          确认
+        </button>
+      </view>
+    </view>
+  </view>
   <view class="productScrollArea">
     <view class="gallerySwiperWrap">
       <swiper class="gallerySwiper" bindchange="changeGalleryIndex">
@@ -40,7 +94,7 @@
         <em>{{commentCount}}</em>
       </view>
     </view>
-    <view class="skuInfoSelectBtn flex-box">
+    <view bindtap='selectSkuInfo' class="skuInfoSelectBtn flex-box">
       请选择尺码 颜色
     </view>
     <view class="stickyHeader flex-box {{sticky? 'sticky' : ''}}">
