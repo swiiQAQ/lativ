@@ -11,9 +11,10 @@
 </wxs>
 
 
-<scroll-view scroll-into-view="{{scrollId}}" scrollTop="{{scrollTop}}" scroll-y style='height: {{windowHeight}}px' bindscroll='scrollHandler'>
-  <view class="mask {{mask? '' : 'hidden'}}">
-    <view class="overlay">
+<scroll-view scroll-into-view="{{scrollId}}" scrollTop="{{scrollTop}}" scroll-y style='height: {{scrollHeight}}px' bindscroll='scrollHandler'>
+  <view class="mask {{mask? '' : 'hidden'}}" bindtap='closeMask'>
+    <view class="overlay" catchtap='holdMask'>
+      <i class="iconfont close" bindtap='closeMask'></i>
       <view class="overlay_top flex-box">
         <image class="sku_img" src="{{colorImage ? colorImage : galleryList[0].little}}"></image>
         <view class="sku_info flex-box vertical-box">
@@ -54,7 +55,7 @@
       </view>
     </view>
   </view>
-  <view class="productScrollArea">
+  <view class="productScrollArea" >
     <view class="gallerySwiperWrap">
       <swiper class="gallerySwiper" bindchange="changeGalleryIndex">
         <swiper-item wx:for="{{galleryList}}">
@@ -132,6 +133,19 @@
         </view>
       </view>
     </view>
-    <view bindtap='scrollToTop' class="goTopBtn {{goTopShow? '' : 'hidden'}}"></view>
+    <view bindtap='scrollToTop' class="iconfont goTop goTopBtn {{goTopShow? '' : 'hidden'}}"></view>
   </view>
 </scroll-view>
+
+<!-- 收藏 购物车 返回主页等 -->
+ <view class="goods_detail_stickyBottom flex-box">
+  <navigator url="pages/index/index" open-type='switchTab' class="sticky_item home iconfont">
+  </navigator>
+  <view class="sticky_item iconfont favorite">
+  </view>
+  <navigator url="/pages/cart/cart" open-type='switchTab' class="sticky_item iconfont cart" >
+  </navigator>
+  <view class="addToCart" bindtap='selectSkuInfo'>
+    加入购物车
+  </view>
+</view> 

@@ -1,2 +1,5 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<!-- <text>pages/user/user.wxml</text> -->
+<view>
+  <image src="{{userInfo.avatarUrl}}"></image>
+</view>

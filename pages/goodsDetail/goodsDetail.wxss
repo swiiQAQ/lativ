@@ -276,9 +276,12 @@ scroll-view {
   font-size: 22rpx;
   color: #888;
 }
+
+/* 无尺码或颜色禁止点击 */
 .disabled{
   border: 1px solid #ccc;
   color: #ccc;
+  pointer-events: none;
 }
 .overlay_bottom{
   background: #fff;
@@ -290,4 +293,29 @@ scroll-view {
   width: 80%;
   height: 80rpx;
   line-height: 80rpx;
+}
+
+.goods_detail_stickyBottom{
+  height: 100rpx;
+  width: 100%;
+  background: #F5F5F5;
+}
+.goods_detail_stickyBottom .sticky_item{
+  width: 140rpx;
+  height: 100%;
+  text-align: center;
+  line-height: 100rpx
+}
+.addToCart{
+  font-size: 26rpx;
+  color: #fff;
+  background: #4D3126;
+  line-height: 100rpx;
+  text-align: center;
+  flex-grow: 1;
+}
+.mask .close{
+  position: absolute;
+  right:30rpx;
+  top: 30rpx;
 }

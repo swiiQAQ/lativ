@@ -1,4 +1,5 @@
 // pages/goodsDetail/goodsDetail.js
+var app = getApp();
 Page({
 
   /**
@@ -41,7 +42,9 @@ Page({
     colorName: '',
     noStockArray: [],
     //颜色选择后小图显示
-    colorImage: ''
+    colorImage: '',
+    //排除下面的sticky，滚动高度
+    scrollHeight: ''
   },
 
   /**
@@ -50,6 +53,9 @@ Page({
   onLoad: function (options) {
     var _this = this;
     var id = options.productId;
+    this.setData({
+      productId: id
+    })
     // debugger;
     wx.request({
       url: 'http://mact.banggo.com/goods/getProductInfo.shtml?goods_sn=' + id,
@@ -105,14 +111,25 @@ Page({
 
     }).exec();
 
+
+
     //获取设备窗口高度
     wx.getSystemInfo({
       success: function (res) {
-        // debugger;
-        var windowWidth = res.windowWidth;
-        // debugger;
-        // _this.setData({ windowHeight: 750 / windowWidth * res.windowHeight});
-        _this.setData({ windowHeight: res.windowHeight })
+        var stickyBottomHeight;
+        query.select(".goods_detail_stickyBottom").boundingClientRect(function (rect) {
+          console.log(rect.height);
+          stickyBottomHeight = rect.height;
+
+          var windowWidth = res.windowWidth;
+          // debugger;
+          // _this.setData({ windowHeight: 750 / windowWidth * res.windowHeight});
+          _this.setData({ windowHeight: res.windowHeight });
+          _this.setData({ scrollHeight: res.windowHeight - stickyBottomHeight })
+
+        }).exec();
+
+
       },
     })
 
@@ -267,7 +284,7 @@ Page({
         colorId: colorId,
         colorName: colorName,
         colorCode: colorCode,
-        colorImage: 'http://pic.banggo.com'+colorImage
+        colorImage: 'http://pic.banggo.com' + colorImage
       });
     }
     else {
@@ -304,6 +321,115 @@ Page({
   },
 
   addToCart: function () {
+    var _this = this;
+    var sizeCode = this.data.sizeCode;
+    var colorCode = this.data.colorCode;
+    if (sizeCode && !colorCode) {
+      wx.showToast({
+        title: '加入购物袋前，请先选择颜色!',
+        icon: 'none'
+      })
+    }
+    else if (colorCode && !sizeCode) {
+      wx.showToast({
+        title: '加入购物袋前，请先选择尺码',
+        icon: 'none'
+      })
+    }
+    else {
+      // var qsData = {
+      //   'goodsSn': this.data.productId, 'sizeCode': sizeCode, 'colorCode': colorCode, 'channelCode': "HQ01S116",
+      //   'number': 1, 'productType': '', 'price': 2, 'extensionId': ''
+      // }
 
-  }
+      // wx.request({
+      //   url: 'http://mact.banggo.com/cart/addGoodsToCartByAjax.shtml',
+      //   data: qsData,
+      //   method: 'get',
+      //   success: function(res){
+      //     // debugger;
+      //     wx.request({
+      //       url: 'http://mact.banggo.com/cart/GetCartNum.shtml?_ksTS=1521794693347_366&callback=jsonp367',
+      //       success: function (res) {
+      //         // debugger;
+      //       }
+      //     })
+      //     wx.showToast({
+      //       title: '恭喜您添加商品成功',
+      //       icon: 'none',
+      //     });
+      //     _this.setData({ mask: false })
+      //   }
+      // })
+      
+
+      // 通过globalData存储数据
+
+      // var cartItemList = app.globalData.cartInfo.cartItem ? app.globalData.cartInfo.cartItem : [];
+      // var qsData = {
+      //   'good_sn': this.data.productId, 
+      //   'price': this.data.salesPrice, 
+      //   'productName': this.data.productName, 
+      //   'color': this.data.colorName,
+      //   'size': this.data.sizeName, 
+      //   'num': 1, 
+      //   'image': this.data.colorImage
+      // }
+      // cartItemList.push(qsData);
+      // app.globalData.cartInfo.cartItems = cartItemList;
+
+      //通过数据缓存
+      var cartItemList;
+      wx.getStorage({
+        key: 'cartInfo',
+        success: res=>{
+          debugger;
+          cartItemList = res.data ? res.data: [];
+        },
+        fail: res=>{
+          cartItemList = [];
+        },
+        complete: ()=>{
+          _this.cartStorage(cartItemList)
+        }
+      })
+    }
+  },
+  cartStorage: function(list){
+    var qsData = {
+      'good_sn': this.data.productId,
+      'price': this.data.salesPrice,
+      'productName': this.data.productName,
+      'color': this.data.colorName,
+      'size': this.data.sizeName,
+      'num': 1,
+      'image': this.data.colorImage
+    }
+    list.push(qsData);
+    wx.setStorage({
+      key: 'cartInfo',
+      data: list,
+      success: () => {
+        wx.showToast({
+          title: '恭喜您添加商品成功',
+          icon: 'none',
+        });
+      },
+      fail: () => {
+        wx.showToast({
+          title: '添加商品失败',
+          icon: 'none',
+        });
+      },
+      complete: () => {
+        // debugger;
+        this.setData({ mask: false })
+
+      }
+    })
+  },
+  //点击遮罩层外部，关闭遮罩层
+  closeMask: function () {
+    this.setData({ mask: false })
+  },
 })

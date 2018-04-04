@@ -1,10 +1,44 @@
 <!--pages/cart/cart.wxml-->
 <view class="cartPage">
-  <view wx:if="{{cartInfo}}" >
+  <view wx:if="{{cartInfo}}">
+    <scroll-view class="cart_scroll" style="height:{{cartScrollHeight}}px">
+
+      <view class="cartScrollTp flex-box">
+        <i class="select selectAll" bindtap="selectAllHandler" ></i>
+        <text> 全选 </text>
+      </view>
+      <view wx:for="{{cartInfo}}" class="cartItemBox flex-box">
+        <i class="select"></i>
+        <view class="">
+          <image mode="widthFix" class='goodsImage' src="{{item.image}}" ></image>
+        </view>
+        <view class="cartItem_ct">
+          <view>{{item.productName}}</view>
+          <view>{{item.color}} - {{item.size}}</view>
+          <view class="flex-box ">
+            <label class="decrease {{item.num == 1? 'disabled': ''}}" data-index="{{index}}" bindtap='decreaseNum'></label>
+            <input class="input_num{{index}} in_num_ct" value="{{item.num}}" type="number"></input>
+            <label class="increase" data-index="{{index}}" bindtap='increaseNum'></label>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+    <view class="flex-box cart_bot">
+      <view class="cart_bot_lf">总金额
+        <i></i>
+      </view>
+      <view class="cart_bot_rt">
+        结算(1)
+      </view>
+    </view>
   </view>
   <view wx:else class="cartEmpty">
-      <i class="cart iconfont"></i>
-      <text class="emptyTips">您的购物车中没有商品</text>
-      <view class="goShopBtn">去购物</view>
+    <i class="cart iconfont"></i>
+    <text class="emptyTips">您的购物车中没有商品</text>
+    <!-- <view class="goShopBtn" >去购物</view> -->
+    <navigator url="/pages/index/index" open-type="switchTab" class="goShopBtn">
+      去购物
+    </navigator>
   </view>
 </view>
