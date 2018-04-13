@@ -7,7 +7,9 @@ Page({
    */
   data: {
     cartInfo: '',
-    cartScrollHeight: ''
+    cartScrollHeight: '',
+    cartSelectedArr: [],
+    selectAllBoolean: false
   },
 
   /**
@@ -36,7 +38,6 @@ Page({
         var cartInfo = res.data;
         this.setData({ cartInfo: cartInfo });
         this.setScrollHeight()
-
       }
     });
 
@@ -99,7 +100,16 @@ Page({
       [cartItemNum] : num-1
     })
   },
+  //选中全部
   selectAllHandler:function(){
-    
+    var arr = [];
+    var cartInfo = this.data.cartInfo;
+    cartInfo.forEach((value,index)=>{
+      arr.push(index);
+    });
+    this.setData({ 
+      cartSelectedArr : arr,
+      selectAllBoolean: true
+    });
   }
 })

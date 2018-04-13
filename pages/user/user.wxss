@@ -1,1 +1,24 @@
 /* pages/user/user.wxss */
+.uesr_pannel_tp{
+  height: 280rpx;
+  background: #4D3126;
+  width: 100%;
+  padding-top: 120rpx;
+  box-sizing: border-box;
+  padding-left: 35rpx;
+}
+.uesr_pannel_tp image{
+  width: 130rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.userInfo_box{
+  margin-left: 50rpx;
+}
+.userInfo_box text{
+  color: #fff;
+}
+.userInfo_box em{
+  color: #bbb;
+  font-size: 8pt;
+}

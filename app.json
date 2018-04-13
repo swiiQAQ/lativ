@@ -6,7 +6,8 @@
     "pages/cart/cart",
     "pages/user/user",
     "pages/logs/logs",
-    "pages/goodsDetail/goodsDetail"
+    "pages/goodsDetail/goodsDetail",
+    "pages/idCardCertificate/idCardCertificate"
   ],
   "tabBar": {
     "color": "#000",

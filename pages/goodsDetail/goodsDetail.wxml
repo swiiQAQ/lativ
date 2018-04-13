@@ -10,13 +10,11 @@
     module.exports.find = find
 </wxs>
 
-
-<scroll-view scroll-into-view="{{scrollId}}" scrollTop="{{scrollTop}}" scroll-y style='height: {{scrollHeight}}px' bindscroll='scrollHandler'>
-  <view class="mask {{mask? '' : 'hidden'}}" bindtap='closeMask'>
+<view class="mask {{mask? '' : 'hidden'}}" bindtap='closeMask' style="overflow:hidden">
     <view class="overlay" catchtap='holdMask'>
       <i class="iconfont close" bindtap='closeMask'></i>
       <view class="overlay_top flex-box">
-        <image class="sku_img" src="{{colorImage ? colorImage : galleryList[0].little}}"></image>
+        <image class="sku_img" bindtap='previewImg' data-index="{{}}" src="{{colorImage ? colorImage : galleryList[0].little}}"></image>
         <view class="sku_info flex-box vertical-box">
           <text>{{productName}}</text>
           <view>
@@ -47,6 +45,12 @@
           <span id="color_{{item.colorCode}}" wx:for="{{colorList}}" class="colorBox {{colorId === index? 'selectColor' : '' }} {{(m1.find(noStockArray,item.colorCode))? 'disabled' : ''}}" bindtap="selectColor" data-id="{{index}}" data-colorname="{{item.colorName}}"
             data-colorcode="{{item.colorCode}}" data-image="{{item.imageUrl}}">{{item.colorName}}</span>
         </view>
+        <view>
+          <view>123</view>
+          <view>123</view>
+          <view>123</view>
+          <view>123</view>
+        </view>
       </scroll-view>
       <view class="overlay_bottom flex-box vertical-box">
         <button type="warn" size="mini" bindtap='addToCart'>
@@ -55,6 +59,8 @@
       </view>
     </view>
   </view>
+<scroll-view scroll-into-view="{{scrollId}}" scrollTop="{{scrollTop}}" scroll-y="{{canScrollY}}" style='height: {{scrollHeight}}px' bindscroll='scrollHandler'>
+  
   <view class="productScrollArea" >
     <view class="gallerySwiperWrap">
       <swiper class="gallerySwiper" bindchange="changeGalleryIndex">

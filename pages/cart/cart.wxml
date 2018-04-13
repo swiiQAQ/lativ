@@ -1,14 +1,24 @@
 <!--pages/cart/cart.wxml-->
+<wxs module="m1">
+  var cartItemJudge = function(cartList,item){
+    if(cartList.indexOf(item) == -1){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  module.exports.cartItemJudge = cartItemJudge;
+</wxs>
 <view class="cartPage">
   <view wx:if="{{cartInfo}}">
     <scroll-view class="cart_scroll" style="height:{{cartScrollHeight}}px">
-
-      <view class="cartScrollTp flex-box">
-        <i class="select selectAll" bindtap="selectAllHandler" ></i>
+      <view class="cartScrollTp flex-box" bindtap='selectAllHandler'>
+        <i class="select selectAll {{selectAllBoolean ? 'cartSelected' : '' }}" ></i>
         <text> 全选 </text>
       </view>
       <view wx:for="{{cartInfo}}" class="cartItemBox flex-box">
-        <i class="select"></i>
+        <i class="select {{m1.cartItemJudge(cartSelectedArr,index)? 'cartSelected' : ''}}" ></i>
         <view class="">
           <image mode="widthFix" class='goodsImage' src="{{item.image}}" ></image>
         </view>

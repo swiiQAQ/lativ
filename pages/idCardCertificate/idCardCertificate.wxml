@@ -1,0 +1,12 @@
+<!--pages/idCardCertificate/idCardCertificate.wxml-->
+<view>
+  
+  <view class="picker idFrontPicker" bindtap='bindPickerChange'>
+    <block wx:if="{{frontPhoto}}">
+      <image mode="aspectFit" class="frontPhoto" src="{{frontPhoto}}"></image>
+    </block>
+    <block wx:else> 
+      身份证正面照片
+    </block>
+  </view>
+</view>

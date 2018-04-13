@@ -1,0 +1,11 @@
+/* pages/idCardCertificate/idCardCertificate.wxss */
+.idFrontPicker{
+  width: 90%;
+  height: 450rpx;
+  border: 1px solid #000;
+  padding: 20rpx 0;
+}
+.frontPhoto{
+  max-height: 400rpx;
+  max-width: 100%;
+}

@@ -44,7 +44,8 @@ Page({
     //颜色选择后小图显示
     colorImage: '',
     //排除下面的sticky，滚动高度
-    scrollHeight: ''
+    scrollHeight: '',
+    canScrollY: true
   },
 
   /**
@@ -77,7 +78,8 @@ Page({
           sizeList: data.sizesList,
           colorList: data.colorsList,
           skuInfo: data.skuInfo
-        })
+        });
+        _this.setPreviewImg(data.colorsList);
       }
     });
     wx.request({
@@ -120,16 +122,12 @@ Page({
         query.select(".goods_detail_stickyBottom").boundingClientRect(function (rect) {
           console.log(rect.height);
           stickyBottomHeight = rect.height;
-
           var windowWidth = res.windowWidth;
           // debugger;
           // _this.setData({ windowHeight: 750 / windowWidth * res.windowHeight});
           _this.setData({ windowHeight: res.windowHeight });
           _this.setData({ scrollHeight: res.windowHeight - stickyBottomHeight })
-
         }).exec();
-
-
       },
     })
 
@@ -139,7 +137,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
@@ -160,13 +158,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
 
   },
 
@@ -203,6 +194,16 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  setPreviewImg: function(colorList){
+    var previewImg = [];
+    colorList.forEach((value, index) => {
+      previewImg.push('http://img.banggo.com' + value.colorImage);
+    })
+    this.setData({ previewImg: previewImg });
+  },
+
+  //商品封面图片轮播滑动事件
   changeGalleryIndex: function (e) {
     var newIndex = e.detail.current;
     this.setData({ galleryIndex: newIndex });
@@ -248,6 +249,7 @@ Page({
 
   selectSkuInfo: function () {
     this.setData({ mask: true });
+    this.setData({canScrollY: false});
   },
 
   //选择尺码
@@ -284,7 +286,7 @@ Page({
         colorId: colorId,
         colorName: colorName,
         colorCode: colorCode,
-        colorImage: 'http://pic.banggo.com' + colorImage
+        colorImage: 'http://pic.banggo.com' + colorImage,
       });
     }
     else {
@@ -298,6 +300,7 @@ Page({
     this.stockFilter();
   },
 
+  //库存双向筛选
   stockFilter: function () {
     var _this = this;
     var skuInfo = this.data.skuInfo;
@@ -319,7 +322,8 @@ Page({
       noStockArray: arr
     })
   },
-
+  
+  //假如购物车操作
   addToCart: function () {
     var _this = this;
     var sizeCode = this.data.sizeCode;
@@ -395,6 +399,7 @@ Page({
       })
     }
   },
+  //缓存购物车数据
   cartStorage: function(list){
     var qsData = {
       'good_sn': this.data.productId,
@@ -430,6 +435,15 @@ Page({
   },
   //点击遮罩层外部，关闭遮罩层
   closeMask: function () {
-    this.setData({ mask: false })
+    this.setData({ mask: false });
+    this.setData({canScrollY: true});
   },
+
+  //预览图片
+  previewImg:function(e){
+    wx.previewImage({
+      current: this.data.previewImg[this.data.colorId],
+      urls: this.data.previewImg,
+    })
+  }
 })
