@@ -1,1 +1,2 @@
-<navigator url="../idCardCertificate/idCardCertificate" open-type="redirectTo">身份证上传</navigator>
+<navigator url="../idCardCertificate/idCardCertificate" open-type="navigate">身份证上传</navigator>
+<navigator url="../address/address" open-type='navigate'>我的收货地址</navigator>

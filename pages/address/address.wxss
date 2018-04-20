@@ -1,0 +1,41 @@
+/* pages/address/address.wxss */
+.addressItem{
+
+  font-size: 24rpx;
+  width: 100%;
+  /* width: 680rpx; */
+  border-bottom: 1px solid #eaeaea;
+  align-items: center;
+}
+.address_lf{
+  flex-grow: 1;
+  padding: 40rpx 30rpx;
+  box-sizing: border-box;
+}
+.address_rt{
+  justify-content: center;
+  width: 80rpx;
+}
+.name_phone_wrap{
+  justify-content: space-between;
+}
+.stickyBottom{
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.selfAdd,.wxAdd{
+  flex-grow: 1;
+  color: #fff;
+  font-size: 12pt;
+  text-align: center;
+  line-height: 100rpx;
+}
+.selfAdd{
+  background: #4D3126;
+}
+.wxAdd{
+  background: #5A463F;
+}

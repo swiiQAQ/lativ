@@ -18,7 +18,7 @@
         <text> 全选 </text>
       </view>
       <view wx:for="{{cartInfo}}" class="cartItemBox flex-box">
-        <i class="select {{m1.cartItemJudge(cartSelectedArr,index)? 'cartSelected' : ''}}" ></i>
+        <i class="select {{m1.cartItemJudge(cartSelectedArr,index)? 'cartSelected' : ''}}" data-index="{{index}}" bindtap="selectSingleHandler"></i>
         <view class="">
           <image mode="widthFix" class='goodsImage' src="{{item.image}}" ></image>
         </view>

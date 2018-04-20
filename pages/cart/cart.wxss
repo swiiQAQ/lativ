@@ -100,6 +100,7 @@
 .cartItem_ct view {
   font-size: 24rpx;
   line-height: 45rpx;
+  margin-left: 20rpx;
 }
 
 .decrease, .increase {

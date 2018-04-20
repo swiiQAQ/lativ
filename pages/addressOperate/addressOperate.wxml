@@ -1,0 +1,5 @@
+<!--pages/addressOperate/addressOperate.wxml-->
+<view class="editAddress">
+     <editAddress name="{{editAddress.name}}" phone="{{editAddress.phone}}" address_name="{{editAddress.address_name}}" address="{{editAddress.address}}"></editAddress>
+</view>
+

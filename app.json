@@ -7,7 +7,9 @@
     "pages/user/user",
     "pages/logs/logs",
     "pages/goodsDetail/goodsDetail",
-    "pages/idCardCertificate/idCardCertificate"
+    "pages/idCardCertificate/idCardCertificate",
+    "pages/address/address",
+    "pages/addressOperate/addressOperate"
   ],
   "tabBar": {
     "color": "#000",

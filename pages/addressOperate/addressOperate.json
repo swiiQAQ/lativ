@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "editAddress": "/components/editAddress/editAddress"
+  }
+}

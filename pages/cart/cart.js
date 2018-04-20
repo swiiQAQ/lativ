@@ -102,14 +102,39 @@ Page({
   },
   //选中全部
   selectAllHandler:function(){
-    var arr = [];
-    var cartInfo = this.data.cartInfo;
-    cartInfo.forEach((value,index)=>{
-      arr.push(index);
-    });
-    this.setData({ 
-      cartSelectedArr : arr,
-      selectAllBoolean: true
-    });
+    var selectAllBoolean = this.data.selectAllBoolean;
+    if(selectAllBoolean){
+      this.setData({ 
+        cartSelectedArr : [],
+        selectAllBoolean: false
+      });
+    }
+    else{
+      var arr = [];
+      var cartInfo = this.data.cartInfo;
+      cartInfo.forEach((value, index) => {
+        arr.push(index);
+      });
+      this.setData({
+        cartSelectedArr: arr,
+        selectAllBoolean: true
+      });
+    }
+  },
+
+  // 单选
+  selectSingleHandler: function(e){
+    var index = e.target.dataset.index;
+    var arr = this.data.cartSelectedArr;
+    if(arr.indexOf(index)==-1){
+      if(arr.length < index){
+        arr.length = index;
+      }
+      arr[index] = index;
+    }
+    else{
+      arr[index] = '';
+    }
+    this.setData({ cartSelectedArr : arr});
   }
 })

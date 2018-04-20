@@ -2,12 +2,12 @@
 <!-- <text>pages/user/user.wxml</text> -->
 <view>
   <view class="uesr_pannel_tp flex-box">
-    <image src="{{userInfo.avatarUrl}}"></image>
+     <image src="{{userInfo.avatarUrl}}"></image> 
     <view class="flex-box vertical-box userInfo_box">
-      <text>{{userInfo.nickName}}</text>
-      <block wx:if="{{userInfo}}">
+       <text>{{userInfo.nickName}}</text> 
+       <block wx:if="{{userInfo}}">
         <em>已绑定微信</em>
-      </block>
+      </block> 
     </view>
   </view>
 </view>

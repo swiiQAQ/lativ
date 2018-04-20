@@ -1,0 +1,24 @@
+<!--pages/address/address.wxml-->
+<view>
+  <view wx:for="{{addressList}}">
+    <view class="addressItem flex-box">
+      <view class="address_lf">
+        <view class="flex-box name_phone_wrap">
+          <span>{{item.name}}</span>
+          <span>{{item.phone}}</span>
+        </view>
+        <view>
+          <span>{{item.address_name}}</span>
+          <span>{{item.address}}</span>
+        </view>
+      </view>
+      <view class="address_rt" bindtap='editAddress' data-index="{{index}}">
+        编辑
+      </view>
+    </view>
+  </view>
+  <view class="stickyBottom flex-box">
+    <navigator url="../addressOperate/addressOperate" class="selfAdd">手动添加</navigator>
+    <view bindtap='wxAddAddress' class="wxAdd">微信添加</view>
+  </view>
+</view>
