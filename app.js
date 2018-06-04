@@ -2,6 +2,13 @@
 App({
   onLaunch: function () {
     var _this = this;
+
+    wx.getSystemInfo({
+      success: function(res) {
+        var version = res.SDKVersion;
+        console.log(version);
+      },
+    })
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

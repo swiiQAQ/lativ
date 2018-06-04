@@ -51,7 +51,6 @@ Page({
       success: function (res) {
         var data = res.data.data;
         _this.setData({ firstLevCates: data });
-        // debugger;
         _this.initSecondCate();
       }
     });
@@ -184,5 +183,11 @@ Page({
   },
   columnSwiperRedirect:function(id){
     this.setData({columnCurrent: id});
+  },
+  navigateToList:function(e){
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/goodsList/goodsList?id='+id
+    })
   }
 })

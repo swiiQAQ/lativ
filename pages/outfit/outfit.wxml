@@ -1,2 +1,10 @@
 <navigator url="../idCardCertificate/idCardCertificate" open-type="navigate">身份证上传</navigator>
-<navigator url="../address/address" open-type='navigate'>我的收货地址</navigator>
+<navigator url="../address/address" open-type='navigate'>我的收货地址</navigator> 
+
+<view>
+  <open-data type="userAvatarUrl"></open-data>
+  <open-data type="userGender" lang="zh_CN"></open-data>
+</view>
+
+<button open-type="getUserInfo" bindgetuserinfo='userInfoHandler'>获取用户信息</button>
+<button size='mini' send-message-title='客服' show-message-card open-type='contact'>联系客服</button>

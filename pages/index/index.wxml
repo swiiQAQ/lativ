@@ -7,7 +7,7 @@
     </view>
   </scroll-view>
 </view>
-<view class="categoryShow">
+<view class="categoryShow" style="width:100%;overflow:hidden">
   <view class='category_con {{ showId==0 ? "active" : ""}}'>
     <swiper class="indexSwiper" indicator-dots autoplay>
       <swiper-item wx:for="{{swiper}}">

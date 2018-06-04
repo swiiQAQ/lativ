@@ -25,14 +25,14 @@ Page({
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
     plate:{
-      category1:{
-        banner: '',
-        grid: '',
-        goodsList: ''
-      },
-      category4:{
-        banner: 'http://img.banggo.com/sources/cms/banggo2017/APP/dxrmbapptz18-0130_01.jpg',
-      }
+      // category1:{
+      //   banner: '',
+      //   grid: '',
+      //   goodsList: ''
+      // },
+      // category4:{
+      //   banner: 'http://img.banggo.com/sources/cms/banggo2017/APP/dxrmbapptz18-0130_01.jpg',
+      // }
     }
   },
 
@@ -99,38 +99,44 @@ Page({
   },
   fetchPlateContent:function(id,plateId){
     var _this = this;
-    wx.request({
-      url: 'http://m.banggo.com/list-category/getCateRelChild.shtml?cate_id='+plateId,
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success:function(res){
-        // debugger;
-        var data = res.data.data[0].children;
-        var plateBanner = "plate.category"+id+'.banner';
-        var plateGrid = "plate.category" + id + '.grid';
-        _this.setData({
-          [plateBanner]: data[0],
-          [plateGrid]: data[1].children
-        })
-      }
-    })
+    var storageData = this.data.plate['category'+id];
+    if (!storageData){
+      wx.request({
+        url: 'http://m.banggo.com/list-category/getCateRelChild.shtml?cate_id=' + plateId,
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          var data = res.data.data[0].children;
+          var plateBanner = "plate.category" + id + '.banner';
+          var plateGrid = "plate.category" + id + '.grid';
+          debugger;
+          _this.setData({
+            [plateBanner]: data[0],
+            [plateGrid]: data[1].children
+          })
+        }
+      })
+    }
   },
   fetchGoodsList:function(id){
-    var _this = this;
-    var keyWord = this.data.sortBar[id].title;
-    var url = 'http://m.banggo.com/search/get-search-goods/a_a_a_a_a_a_a_a_a_a_a_a.shtml?ts=&discountRate=a&word='+keyWord;
-    wx.request({
-      url: url,
-      success: function(res){
-        var data = res.data.data.list;
-        // debugger;
-        var goodsList = 'plate.category' + id +'.goodsList' ;
-        _this.setData({
-          [goodsList] : data
-        })
-      }
-    })
+    var storageData = this.data.plate['category'+id];
+    if(!storageData){
+      debugger;
+      var _this = this;
+      var keyWord = this.data.sortBar[id].title;
+      var url = 'http://m.banggo.com/search/get-search-goods/a_a_a_a_a_a_a_a_a_a_a_a.shtml?ts=&discountRate=a&word=' + keyWord;
+      wx.request({
+        url: url,
+        success: function (res) {
+          var data = res.data.data.list;
+          var goodsList = 'plate.category' + id + '.goodsList';
+          _this.setData({
+            [goodsList]: data
+          })
+        }
+      })
+    }
   },
   goodsDetailRedirect:function(e){
     var productId = e.currentTarget.dataset.productid;

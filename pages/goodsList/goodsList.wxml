@@ -1,0 +1,30 @@
+<!--pages/goodsList/goodsList.wxml-->
+<view class="mask {{maskShow ? '' : 'hidden'}}">
+</view>
+<view class="filterBar" style="background: {{ complexFold ? '#F7F7F7' : '#fff'}}">
+  <view class='filterWrap'>
+    <view bindtap='complexHandler' class='complex iconfont {{complexFold ? "sortTop" : "sortBottom"}}'>{{complexText}}</view>
+    <view bindtap=''>价格</view>
+    <view bindtap=''>有货</view>
+    <view bindtap='filterUnfold'>筛选</view>
+    <i class="filter iconfont"></i>
+  </view>
+  <ul wx:if="{{!complexFold}}" class="complexUnfold">
+    <li bindtap='changeComplex' data-text='综合'>综合排序</li>
+    <li bindtap='changeComplex' data-text='新品'>新品优先</li>
+    <li bindtap='changeComplex' data-text='销量'>销量从高到低</li>
+  </ul>
+</view>
+<scroll-view scroll-y class="goodsListPanel">
+  <ul class="goodsListFlexBox">
+    <li class="flex-item" wx:for="{{list}}">
+      <image src="{{item.imgUrl}}?x-oss-process=image/resize,m_fill,w_300,h_410" mode='widthFix'></image>
+      <text>{{item.brandName}}</text>
+      <text>{{item.productName}}</text>
+      <view>
+        <text class="salesPrice">￥{{item.salesPrice}}</text>
+        <em class="marketPrice">￥{{item.marketPrice}}</em>
+      </view>
+    </li>
+  </ul>
+</scroll-view>

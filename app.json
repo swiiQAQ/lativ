@@ -9,7 +9,8 @@
     "pages/goodsDetail/goodsDetail",
     "pages/idCardCertificate/idCardCertificate",
     "pages/address/address",
-    "pages/addressOperate/addressOperate"
+    "pages/addressOperate/addressOperate",
+    "pages/goodsList/goodsList"
   ],
   "tabBar": {
     "color": "#000",

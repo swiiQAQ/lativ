@@ -191,8 +191,20 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (e) {
+    var title = e.target.dataset.title;
+    return {
+      title: title,
+      path: '/pages/goodsDetail?productId=' + this.data.productId,
+      success: function (res) {
+        // 转发成功
+        console.log(res);
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log(res);
+      }
+    }
   },
 
   setPreviewImg: function(colorList){
@@ -445,5 +457,7 @@ Page({
       current: this.data.previewImg[this.data.colorId],
       urls: this.data.previewImg,
     })
+  },
+  preventScroll:function(){
   }
 })

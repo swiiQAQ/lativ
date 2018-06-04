@@ -6,7 +6,7 @@ Component({
   properties: {
     name: {
       type: String,
-      value: ''
+      value: '',
     },
     phone: {
       type: String,
@@ -17,7 +17,7 @@ Component({
       value: ''
     },
     address: {
-      type: String,
+      type: null,
       value: ''
     }
   },
@@ -26,13 +26,22 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    region: ''
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    bindRegionChange: function(e){
+      // this.setData({
+      //   region: e.detail.value
+      // })
+      this.properties.address_name = e.detail.value;
+      this.setData({
+        region: e.detail.value
+      })
+    }
+  },
 
-  }
 })

@@ -1,0 +1,106 @@
+/* pages/goodsList/goodsList.wxss */
+
+page {
+  height: 100%;
+}
+.mask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index:99;
+  background: rgba(0, 0, 0, 0.3);
+}
+.filterBar {
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  position: -webkit-sticky;
+  width: 100%;
+  color: #ababab;
+  border-top: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+  box-sizing: border-box;
+  font-size: 34rpx;
+}
+
+.filterWrap {
+  display: flex;
+  /* background: #F7F7F7; */
+  height: 100rpx;
+  justify-content: space-around;
+}
+
+.filterWrap view, .filterWrap i {
+  text-align: center;
+  line-height: 100rpx;
+}
+.complexUnfold{
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+.complexUnfold li{
+  display: inline-block;
+  width: 100%;
+  height: 100rpx;
+  font-size: 32rpx;
+  padding-left: 40rpx;
+  line-height: 100rpx;
+}
+.goodsListPanel {
+  width: 100%;
+  height: 100%;
+  padding: 0 18rpx;
+  box-sizing: border-box;
+  /* margin-top: 100rpx; */
+}
+
+.complex {
+  color: #f8584f;
+  position: relative;
+}
+
+.sortTop:before, .sortBottom::before {
+  position: absolute;
+  right: -40rpx;
+  font-size: 40rpx;
+}
+
+.goodsListFlexBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.goodsListFlexBox .flex-item {
+  display: flex;
+  flex-direction: column;
+  width: 348rpx;
+  height: 680rpx;
+}
+
+.goodsListFlexBox .flex-item image {
+  width: 348rpx;
+}
+
+.goodsListFlexBox .flex-item text {
+  color: #919191;
+  font-size: 32rpx;
+}
+
+.goodsListFlexBox .salesPrice {
+  font-weight: 800;
+  color: #000;
+  margin-right: 40rpx;
+}
+
+.goodsListFlexBox .marketPrice {
+  text-decoration: line-through;
+  font-size: 28rpx;
+  color: #919191;
+}

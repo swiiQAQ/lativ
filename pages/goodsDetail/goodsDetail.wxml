@@ -46,10 +46,10 @@
             data-colorcode="{{item.colorCode}}" data-image="{{item.imageUrl}}">{{item.colorName}}</span>
         </view>
         <view>
-          <view>123</view>
-          <view>123</view>
-          <view>123</view>
-          <view>123</view>
+          <view>1</view>
+          <view>1</view>
+          <view>1</view>
+          <view>1</view>
         </view>
       </scroll-view>
       <view class="overlay_bottom flex-box vertical-box">
@@ -59,7 +59,7 @@
       </view>
     </view>
   </view>
-<scroll-view scroll-into-view="{{scrollId}}" scrollTop="{{scrollTop}}" scroll-y="{{canScrollY}}" style='height: {{scrollHeight}}px' bindscroll='scrollHandler'>
+<scroll-view upper-threshold='0' scroll-into-view="{{scrollId}}" scrollTop="{{scrollTop}}" scroll-y="{{canScrollY}}" style='height: {{scrollHeight}}px' bindscroll='scrollHandler'>
   
   <view class="productScrollArea" >
     <view class="gallerySwiperWrap">
@@ -147,8 +147,8 @@
  <view class="goods_detail_stickyBottom flex-box">
   <navigator url="pages/index/index" open-type='switchTab' class="sticky_item home iconfont">
   </navigator>
-  <view class="sticky_item iconfont favorite">
-  </view>
+  <button data-title="{{productName}}" open-type='share' class="sticky_item iconfont favorite" style="position:none!important">
+  </button>
   <navigator url="/pages/cart/cart" open-type='switchTab' class="sticky_item iconfont cart" >
   </navigator>
   <view class="addToCart" bindtap='selectSkuInfo'>

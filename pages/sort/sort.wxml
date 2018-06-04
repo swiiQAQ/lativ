@@ -28,10 +28,10 @@
           <swiper-item wx:for="{{secondCate[index]}}" duration="300">
             <image class="sort_banner" src="http://img.banggo.com/sources/cms/banggo2017/APP/20180129/a_fldh_8.jpg"></image>
             <view class="thirdCate">
-              <view class="thCate_grid" wx:for="{{item.children}}">
+               <view class="thCate_grid" data-id="{{item.id}}" bindtap='navigateToList' wx:for="{{item.children}}">
                 <image src="{{item.icon}}"></image>
                 <text>{{item.site_cate_name}}</text>
-              </view>
+              </view> 
             </view>
           </swiper-item>
         </swiper>
