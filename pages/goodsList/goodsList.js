@@ -9,7 +9,25 @@ Page({
     list: '',
     complexFold: true,
     complexText: '综合',
-    maskShow: false
+    maskShow: false,
+    //是否显示筛选二级页面
+    showSelectAll: false,
+    //二级页面数据
+    filterPanel2:{
+      name: '',
+      value: ''
+    },
+    //筛选options
+    filterOptions:{
+      price: '',
+      gender: '',
+      season: '',
+      situation: '',
+      series: '',
+      color: '',
+      size: '',
+      fabrics: '',
+    }
   },
 
   /**
@@ -97,6 +115,50 @@ Page({
     });
   },
   filterUnfold: function(){
-    this.setData({maskShow : false});
+    var _this = this;
+    this.setData({ filterPanel : true});
+    wx.request({
+      url: 'http://m.banggo.com/searchbrand/get-filter-info/a_a_a_MC_a_a_a_a_a_a_a_a.shtml?ts=&discountRate=a&controller=searchBrand&suffix=&word=&',
+      success: function(res){
+        var othersList = res.data.data.others;
+        var category = res.data.data.cate;
+        _this.setData({
+          category : category,
+          othersList : othersList
+        })
+      }
+    })
+  },
+  scrollHandler:function(){
+    // debugger;
+  },
+  foldFilterPanel: function(){
+    this.setData({ 
+      filterPanel : false ,
+      showSelectAll: false
+    });
+  },
+  showSelectAllHandler: function(e){
+    var name = e.target.dataset.name;
+    var value = e.target.dataset.value;
+    this.setData({
+      showSelectAll : true,
+      filterPanel2:{
+        name: name,
+        value: value
+      }
+    });
+    
+  },
+  backFirstCate: function(){
+    this.setData({
+      showSelectAll : false,
+      filterPanel: true
+    })
+  },
+  selectFilter: function(e){
+    var code = e.target.dataset.code;
+    var name = e.target.dataset.name;
+    
   }
 })
