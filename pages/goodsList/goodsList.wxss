@@ -21,6 +21,7 @@ z-index: 99;
 background: rgba(0, 0, 0, 0.3);
 }
 .filterBar {
+  height: 9%;
 z-index: 88;
 position: sticky;
 top: 0;
@@ -57,7 +58,7 @@ line-height: 100rpx;
 }
 .goodsListPanel {
 width: 100%;
-height: 100%;
+height: 91%;
 box-sizing: border-box;
 position: relative;
 }
@@ -87,6 +88,7 @@ height: 680rpx;
 }
 .goodsListFlexBox .flex-item image {
 width: 348rpx;
+height: 460rpx;
 }
 .goodsListFlexBox .flex-item text {
 color: #919191;

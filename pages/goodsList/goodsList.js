@@ -1,4 +1,5 @@
 // pages/goodsList/goodsList.js
+var config = require("../../utils/config.js");
 Page({
 
   /**
@@ -27,7 +28,15 @@ Page({
       color: '',
       size: '',
       fabrics: '',
-    }
+    },
+    //默认图片
+    defaultImg: '',
+    //
+    lazyloadList: [],
+    //一页有多少条数据
+    pageSize: '',
+    //当前页数
+    pageNum: 1
   },
 
   /**
@@ -36,15 +45,32 @@ Page({
   onLoad: function (options) {
     var id = options.id;
     var _this = this;
-    // this.fetchGoodsList();
-    // debugger;
-    // this.setData({ list : data.list});
-    // this.setData({ defaultImg : data.img_hsot});
+
     this.fetchGoodsList(1,function(data){
-      _this.setData({ list : data.list});
-      _this.setData({ defaultImg : data.img_hsot});
-    })
-    
+      //创造一个每个值都为false，长度和list一样的数组
+      var length = data.list.length;
+      _this.setData({pageSize: length});
+      var arr = [];
+      // arr = arr.join('false,').split(',');
+      // arr.length = arr.length - 1;
+      for(var i = 0; i< length;i++){
+        if(i<4){
+          arr[i] = true
+        }
+        else{
+          arr[i] = false;
+        }
+      }
+      // var arrHeight = [];
+      // data.list.forEach(function(item,index){
+      //   arrHeight[index] = Math.floor(index / 2 ) * 340;
+      // })
+      _this.setData({ 
+        list : data.list,
+        defaultImg: data.img_host.default,
+        lazyloadList : arr,
+      });
+    });
   },
 
   /**
@@ -94,12 +120,12 @@ Page({
   onShareAppMessage: function () {
 
   },
-  fetchGoodsList: function (pageNum,func) {
+  fetchGoodsList: function (pageNum,callback) {
     pageNum = pageNum ? pageNum : 1;
     wx.request({
       url: 'http://m.banggo.com/searchbrand/get-search-goods/a_a_a_MC_a_a_a_a_a_a_a_a.shtml?ts=&discountRate=a&controller=searchBrand&suffix=&word=&currentPage=' + pageNum,
       success: function (res) {
-        func(res.data.data);
+        callback(res.data.data);
       }
     })
   },
@@ -129,15 +155,53 @@ Page({
       }
     })
   },
-  scrollHandler:function(){
-    // debugger;
+  //滚动事件
+  scrollHandler:function(e){
+    var scrollTop = e.detail.scrollTop;
+    var calc = Math.floor((scrollTop + 1360/config.config.dpi)/(680/config.config.dpi)*2);
+    console.log(scrollTop);
+    console.log(calc);
+    var arr = this.data.lazyloadList;
+    if ( arr[calc] == false ){
+      for(var i = 0;i<arr.length;i++){
+        if(i<calc){
+          arr[i] = true;
+        }else{
+          break;
+        }
+      }
+      this.setData({ lazyloadList : arr});
+    }
   },
+  scrolltoLowerHandler:function(){
+    var size = this.data.pageSize;
+    var num = this.data.pageNum;
+    var _this = this;
+    var list = _this.data.list;
+    var arr = this.data.lazyloadList;
+    var newArr = [];
+    for (var i = 0; i < size;i++){
+      newArr[i] = false;
+    }
+    this.fetchGoodsList(num + 1, function (data) {
+      var newList = data.list;
+      
+      _this.setData({ 
+        list: list.concat(newList),
+        lazyloadList: arr.concat(newArr),
+        pageNum: num+1
+      });
+      // debugger;
+    });
+  },
+  // 收起筛选页面
   foldFilterPanel: function(){
     this.setData({ 
       filterPanel : false ,
       showSelectAll: false
     });
   },
+  // 筛选二级页面展开
   showSelectAllHandler: function(e){
     var name = e.target.dataset.name;
     var value = e.target.dataset.value;
@@ -148,8 +212,8 @@ Page({
         value: value
       }
     });
-    
   },
+  //筛选二级返回一级
   backFirstCate: function(){
     this.setData({
       showSelectAll : false,
@@ -159,6 +223,8 @@ Page({
   selectFilter: function(e){
     var code = e.target.dataset.code;
     var name = e.target.dataset.name;
-    
+  },
+  generateLazyLoadList: function(){
+
   }
 })

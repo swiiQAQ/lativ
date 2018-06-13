@@ -67,12 +67,14 @@
     </view>
   </view>
 </view>
-<scroll-view scroll-y bindscroll='scrollHandler' class="goodsListPanel">
+<scroll-view scroll-y bindscroll='scrollHandler' class="goodsListPanel" lower-threshold="80" bindscrolltolower="scrolltoLowerHandler">
   <!-- 点击出现 -->
 
   <ul class="goodsListFlexBox">
     <li class="flex-item" wx:for="{{list}}">
-      <image src="{{item.imgUrl}}?x-oss-process=image/resize,m_fill,w_300,h_410" mode='widthFix'></image>
+      <!-- <image src="{{item.imgUrl}}?x-oss-process=image/resize,m_fill,w_300,h_410" mode='widthFix'></image> -->
+      <image src="{{lazyloadList[index] ? item.imgUrl+'?x-oss-process=image/resize,m_fill,w_300,h_410' : defaultImg}}"></image>
+      
       <text>{{item.brandName}}</text>
       <text>{{item.productName}}</text>
       <view>
