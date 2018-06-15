@@ -1,5 +1,6 @@
 // pages/goodsList/goodsList.js
 var config = require("../../utils/config.js");
+var app = getApp();
 Page({
 
   /**
@@ -7,7 +8,7 @@ Page({
    */
   data: {
     //商品列表
-    list: '',
+    list: [],
     complexFold: true,
     complexText: '综合',
     maskShow: false,
@@ -36,7 +37,7 @@ Page({
     //一页有多少条数据
     pageSize: '',
     //当前页数
-    pageNum: 1
+    currentPage: 1
   },
 
   /**
@@ -45,11 +46,12 @@ Page({
   onLoad: function (options) {
     var id = options.id;
     var _this = this;
-
+    this.setData({ currentPageList: app.globalData.currentPageList });
+    
     this.fetchGoodsList(1,function(data){
       //创造一个每个值都为false，长度和list一样的数组
-      var length = data.list.length;
-      _this.setData({pageSize: length});
+      var length = data.fpage.pagesize
+      _this.setData({ pageSize: length});
       var arr = [];
       // arr = arr.join('false,').split(',');
       // arr.length = arr.length - 1;
@@ -66,7 +68,7 @@ Page({
       //   arrHeight[index] = Math.floor(index / 2 ) * 340;
       // })
       _this.setData({ 
-        list : data.list,
+        list : [data.list],
         defaultImg: data.img_host.default,
         lazyloadList : arr,
       });
@@ -158,9 +160,16 @@ Page({
   //滚动事件
   scrollHandler:function(e){
     var scrollTop = e.detail.scrollTop;
+    var size = this.data.pageSize;
+    var oldPageList = app.globalData.currentPageList;
     var calc = Math.floor((scrollTop + 1360/config.config.dpi)/(680/config.config.dpi)*2);
-    console.log(scrollTop);
-    console.log(calc);
+    var currentPageList = [Math.floor(calc / size - 1), Math.floor(calc / size)];
+    if (calc > size && currentPageList.toString() !== oldPageList.toString()){
+      this.setData({ currentPageList: currentPageList });
+      app.globalData.currentPageList = currentPageList;
+    }
+    // console.log(scrollTop);
+    // console.log(calc);
     var arr = this.data.lazyloadList;
     if ( arr[calc] == false ){
       for(var i = 0;i<arr.length;i++){
@@ -175,7 +184,7 @@ Page({
   },
   scrolltoLowerHandler:function(){
     var size = this.data.pageSize;
-    var num = this.data.pageNum;
+    var currentPage = this.data.currentPage;
     var _this = this;
     var list = _this.data.list;
     var arr = this.data.lazyloadList;
@@ -183,13 +192,13 @@ Page({
     for (var i = 0; i < size;i++){
       newArr[i] = false;
     }
-    this.fetchGoodsList(num + 1, function (data) {
+    this.fetchGoodsList(currentPage + 1, function (data) {
       var newList = data.list;
-      
+      list.push(newList);
       _this.setData({ 
-        list: list.concat(newList),
+        list: list,
         lazyloadList: arr.concat(newArr),
-        pageNum: num+1
+        currentPage: currentPage+1
       });
       // debugger;
     });
@@ -223,8 +232,5 @@ Page({
   selectFilter: function(e){
     var code = e.target.dataset.code;
     var name = e.target.dataset.name;
-  },
-  generateLazyLoadList: function(){
-
   }
 })

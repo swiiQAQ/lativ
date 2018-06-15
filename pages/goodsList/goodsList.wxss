@@ -71,7 +71,7 @@ position: absolute;
 right: -40rpx;
 font-size: 40rpx;
 }
-.goodsListFlexBox {
+/* .goodsListFlexBox {
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
@@ -103,7 +103,7 @@ margin-right: 40rpx;
 text-decoration: line-through;
 font-size: 28rpx;
 color: #919191;
-}
+} */
 .filterPanel{
 width: 645rpx;
 height: 100%;

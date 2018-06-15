@@ -75,6 +75,7 @@ App({
        }
      ] 
     },
-    userInfo: ''
+    userInfo: '',
+    currentPageList: [0,1]
   }
 })

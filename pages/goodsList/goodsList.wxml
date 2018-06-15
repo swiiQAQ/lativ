@@ -1,5 +1,6 @@
 <!-- <view class="mask {{maskShow ? '' : 'hidden'}}">
 </view> -->
+<wxs src="../../utils/util.wxs" module="tools" />
 <wxs module="m1">
   var isEmpty = function(arr) {
     console.log(arr)
@@ -67,14 +68,11 @@
     </view>
   </view>
 </view>
-<scroll-view scroll-y bindscroll='scrollHandler' class="goodsListPanel" lower-threshold="80" bindscrolltolower="scrolltoLowerHandler">
-  <!-- 点击出现 -->
-
-  <ul class="goodsListFlexBox">
+<scroll-view scroll-y bindscroll='scrollHandler' class="goodsListPanel" lower-threshold="80" bindscrolltolower="scrolltoLowerHandler" data-page ="{{tools.formatArray(3)}}" >
+  <goodslist-ul wx:for="{{tools.formatArray(currentPage)}}" listId="{{item}}" list="{{list[index]}}" defaultImg="{{defaultImg}}" lazyloadList = "{{lazyloadList}}" currentPageList="{{currentPageList}}"></goodslist-ul>
+  <!-- <ul class="goodsListFlexBox">
     <li class="flex-item" wx:for="{{list}}">
-      <!-- <image src="{{item.imgUrl}}?x-oss-process=image/resize,m_fill,w_300,h_410" mode='widthFix'></image> -->
       <image src="{{lazyloadList[index] ? item.imgUrl+'?x-oss-process=image/resize,m_fill,w_300,h_410' : defaultImg}}"></image>
-      
       <text>{{item.brandName}}</text>
       <text>{{item.productName}}</text>
       <view>
@@ -82,5 +80,5 @@
         <em class="marketPrice">￥{{item.marketPrice}}</em>
       </view>
     </li>
-  </ul>
+  </ul> -->
 </scroll-view>
