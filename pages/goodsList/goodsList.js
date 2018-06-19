@@ -37,7 +37,8 @@ Page({
     //一页有多少条数据
     pageSize: '',
     //当前页数
-    currentPage: 1
+    currentPage: 1,
+
   },
 
   /**
@@ -46,6 +47,9 @@ Page({
   onLoad: function (options) {
     var id = options.id;
     var _this = this;
+    if(app.globalData.currentPageList[0]!== 0){
+      app.globalData.currentPageList=[0,1];
+    }
     this.setData({ currentPageList: app.globalData.currentPageList });
     
     this.fetchGoodsList(1,function(data){
@@ -67,8 +71,10 @@ Page({
       // data.list.forEach(function(item,index){
       //   arrHeight[index] = Math.floor(index / 2 ) * 340;
       // })
+      app.globalData.list = [data.list];
+      
       _this.setData({ 
-        list : [data.list],
+        // list : [data.list],
         defaultImg: data.img_host.default,
         lazyloadList : arr,
       });
@@ -182,11 +188,12 @@ Page({
       this.setData({ lazyloadList : arr});
     }
   },
+  //下拉刷新
   scrolltoLowerHandler:function(){
     var size = this.data.pageSize;
     var currentPage = this.data.currentPage;
     var _this = this;
-    var list = _this.data.list;
+    var list = app.globalData.list;
     var arr = this.data.lazyloadList;
     var newArr = [];
     for (var i = 0; i < size;i++){
@@ -195,12 +202,11 @@ Page({
     this.fetchGoodsList(currentPage + 1, function (data) {
       var newList = data.list;
       list.push(newList);
+      app.globalData.list = list;
       _this.setData({ 
-        list: list,
         lazyloadList: arr.concat(newArr),
         currentPage: currentPage+1
       });
-      // debugger;
     });
   },
   // 收起筛选页面
