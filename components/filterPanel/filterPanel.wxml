@@ -1,0 +1,39 @@
+<view bindtap='foldFilterPanel' class="filterPanelMask">
+  <view class="filterPanel">
+    <!-- 一级分类页面 -->
+    <view wx:if="{{!showSelectAll}}" catchtap='handler'>
+      <view class="categoryWrap">
+        <view class="category">
+          <text>分类</text>
+          <em>全部</em>
+        </view>
+      </view>
+      <ul class="othersList">
+        <li wx:for="{{othersList}}" wx:if="{{item.name}}" class="list-item">
+          <p class="list-item-title" data-name="{{item.name}}" data-value="{{item.value}}" bindtap='showSelectAllHandler'>
+            <text>{{item.name}}</text>
+            <text class="forwardNext"></text>
+          </p>
+          <dl>
+            <dt wx:for="{{item.value}}" wx:for-item="otherItem" wx:if="{{index<6}}" class="other-item" data-name="{{item.name}}" data-code="{{otherItem.code}}" bindtap="selectFilter">{{otherItem.name}}</dt>
+          </dl>
+        </li>
+      </ul>
+      <view class="panelStickyBottom">
+        <view class="reset">重置</view>
+        <view class="submit">确认</view>
+      </view>
+    </view>
+    <!-- 二级分类页面 -->
+    <view catchtap='handler' wx:else="{{showSelectAll}}" class="filter_panel2">
+      <view class="filter_title">
+        <i bindtap="backFirstCate" class="goBack"></i>
+        全部{{filterPanel2.name}}
+      </view>
+      <view> 全部 </view>
+      <view wx:for="{{filterPanel2.value}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+</view>

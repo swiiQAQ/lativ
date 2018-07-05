@@ -2,6 +2,7 @@
   "enablePullDownRefresh": false,
   "disableScroll": true,
   "usingComponents": {
-    "goodslist-ul": "../../components/goodsListPanel/goodsListPanel"
+    "goodslist-ul": "../../components/goodsListPanel/goodsListPanel",
+    "filterPanel": "../../components/filterPanel/filterPanel"
   }
 }

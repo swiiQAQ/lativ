@@ -12,8 +12,7 @@ Page({
     complexFold: true,
     complexText: '综合',
     maskShow: false,
-    //是否显示筛选二级页面
-    showSelectAll: false,
+
     //二级页面数据
     filterPanel2:{
       name: '',
@@ -57,8 +56,6 @@ Page({
       var length = data.fpage.pagesize
       _this.setData({ pageSize: length});
       var arr = [];
-      // arr = arr.join('false,').split(',');
-      // arr.length = arr.length - 1;
       for(var i = 0; i< length;i++){
         if(i<4){
           arr[i] = true
@@ -67,14 +64,10 @@ Page({
           arr[i] = false;
         }
       }
-      // var arrHeight = [];
-      // data.list.forEach(function(item,index){
-      //   arrHeight[index] = Math.floor(index / 2 ) * 340;
-      // })
+
       app.globalData.list = [data.list];
       
       _this.setData({ 
-        // list : [data.list],
         defaultImg: data.img_host.default,
         lazyloadList : arr,
       });
@@ -209,34 +202,9 @@ Page({
       });
     });
   },
-  // 收起筛选页面
-  foldFilterPanel: function(){
-    this.setData({ 
-      filterPanel : false ,
-      showSelectAll: false
-    });
-  },
-  // 筛选二级页面展开
-  showSelectAllHandler: function(e){
-    var name = e.target.dataset.name;
-    var value = e.target.dataset.value;
+  foldPanel: function () {
     this.setData({
-      showSelectAll : true,
-      filterPanel2:{
-        name: name,
-        value: value
-      }
+      filterPanel: false,
     });
-  },
-  //筛选二级返回一级
-  backFirstCate: function(){
-    this.setData({
-      showSelectAll : false,
-      filterPanel: true
-    })
-  },
-  selectFilter: function(e){
-    var code = e.target.dataset.code;
-    var name = e.target.dataset.name;
   }
 })

@@ -6,6 +6,7 @@
 //   return arr;
 // }
 
+//根据数字生成长度为数字的数组
 function formatArray(num){
   var arr = [];
   for(var i = 0; i < num; i++){
@@ -14,6 +15,7 @@ function formatArray(num){
   return arr;
 }
 
+//indexOf函数
 function indexOf(arr,item){
   console.log("arr:"+arr);
   console.log("item:"+item);
@@ -25,7 +27,17 @@ function indexOf(arr,item){
   }
 }
 
+//判断数组是否为空
+function isEmpty(arr) {
+  if (arr.length == 0) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 module.exports={
   formatArray: formatArray,
-  indexOf : indexOf
+  indexOf : indexOf,
+  isEmpty: isEmpty
 }
